@@ -1,0 +1,45 @@
+
+
+body {
+	background-color: #ffffff;
+}
+
+#logo {
+	height: 60px;
+	background-color: #dadada
+}
+
+table {
+	width: 1300px;
+}
+
+#header, #footer {
+	height: 80px;
+	background-color: #99CCFF;
+	text-align: center;
+}
+
+#content {
+	text-align: center;
+}
+
+#content_table {
+	height: 1600px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

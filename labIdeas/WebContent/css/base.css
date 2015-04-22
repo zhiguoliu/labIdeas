@@ -1,4 +1,7 @@
-
+* {
+	margin: 0px;
+	padding: 0px;
+}
 
 body {
 	background-color: #ffffff;
@@ -26,20 +29,3 @@ table {
 #content_table {
 	height: 1600px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

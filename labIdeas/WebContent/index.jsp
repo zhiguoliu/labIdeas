@@ -14,27 +14,60 @@
 
 <body >
 
-<!-- 网站logo -->
+<!-- 网站logo 
 	<div id="logo" class="logo" >
 		<table >
 			<tr>
-				<td>
-					<img alt="logo.png" src="../images/logo.png;">
+				<td width="250px;" style="size: 20px;">
+					<a href="#"><img alt="logo.png" src="../images/logo.png;">LabIdeas</a>
 				</td>
+				<td></td>
 			</tr>
 		</table>
-	</div>
+	</div>-->
 	
 <!-- 网站页眉 -->
 	<div id="header" class="header" >
-		<h1>LabIdeas</h1>
+		<table>
+			<tr>
+				<td width="250px;" style="size: 20px;"><a href="#"><img
+						alt="logo.png" src="../images/logo.png;">LabIdeas</a></td>
+				<td>
+					<ul id="nav">
+						<li><a href="http://www.divcss5.com/">首页</a></li>
+						<li><a href="http://www.divcss5.com/html/">HTML教程</a></li>
+						<li><a href="http://www.divcss5.com/rumen/">CSS基础</a></li>
+						<li><a href="http://www.divcss5.com/css-tool/">CSS开发工具</a></li>
+						<li><a href="http://www.divcss5.com/css-texiao/">CSS特效</a></li>
+						<li><a href="http://www.divcss5.com/wenji/">CSS问题</a></li>
+					</ul>
+				</td>
+				<td >
+					<ul id="login_register">
+						<li><a href="" >login</a></li>
+						<li><a href="">register</a></li>
+					</ul>
+					
+				</td>
+			</tr>
+		</table>
+
 	</div>
 	
 <!-- 网站主体 -->
 	<div id="content" class="content" >
 		<table id="table_content" class="table_content" >
 			<tr >
-				<td width="250px;" bgcolor="#99CCFF" >导航条</td>
+				<td width="250px;" bgcolor="#6699CC">导航条
+					<ul id="navigator">
+						<li><a href="http://www.divcss5.com/">首页</a></li>
+						<li><a href="http://www.divcss5.com/html/">HTML教程</a></li>
+						<li><a href="http://www.divcss5.com/rumen/">CSS基础</a></li>
+						<li><a href="http://www.divcss5.com/css-tool/">CSS开发工具</a></li>
+						<li><a href="http://www.divcss5.com/css-texiao/">CSS特效</a></li>
+						<li><a href="http://www.divcss5.com/wenji/">CSS问题</a></li>
+					</ul>
+				</td>
 				<td align="center">内容主体
 					<table id="customers">
 						<tr>

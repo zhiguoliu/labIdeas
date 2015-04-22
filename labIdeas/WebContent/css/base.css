@@ -19,8 +19,8 @@ table {
 }
 
 #header, #footer {
-	height: 80px;
-	background-color: #99CCFF;
+	height: 60px;
+	background-color: #6699CC;
 	text-align: center;
 }
 
@@ -30,6 +30,36 @@ table {
 
 #table_content {
 	height: 1600px;
+}
+
+#nav, #login_register {
+	height: 60px;
+	margin: 0 auto;
+	background: #6699CF;
+}
+
+ul#nav li {
+	float: left;
+	display: inline;
+}
+
+ul#login_register li {
+	float: right;
+	display: inline;
+}
+
+ul#nav li a, ul#login_register li a {
+	display: inline-block;
+	padding: 0 20px;
+	height: 60px;
+	line-height: 60px;
+	color: #FFFFFF;
+	font-family: "\5FAE\8F6F\96C5\9ED1";
+	font-size: 16px;
+}
+/*设置鼠标滑过或悬停时变化的背景颜色*/
+ul#nav li a:hover, ul#login_register li a:hover {
+	background: #0095BB;
 }
 
 #customers {

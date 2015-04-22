@@ -32,7 +32,7 @@
 	
 <!-- 网站主体 -->
 	<div id="content" class="content" >
-		<table id="content_table" class="content_table" >
+		<table id="table_content" class="table_content" >
 			<tr >
 				<td width="250px;" bgcolor="#99CCFF" >导航条</td>
 				<td align="center">内容主体</td>

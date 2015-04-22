@@ -14,6 +14,8 @@ body {
 
 table {
 	width: 1300px;
+	margin: auto;
+	border-collapse: collapse;
 }
 
 #header, #footer {
@@ -26,6 +28,6 @@ table {
 	text-align: center;
 }
 
-#content_table {
+#table_content {
 	height: 1600px;
 }

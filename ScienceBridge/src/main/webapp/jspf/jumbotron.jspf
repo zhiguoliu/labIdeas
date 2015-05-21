@@ -1,0 +1,11 @@
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+
+<div class="container">
+   <div class="jumbotron">
+      <h1>欢迎登陆页面！</h1>
+      <p>这是一个超大屏幕（Jumbotron）的实例。</p>
+      <p><a class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-user"></span>Register Now</a>
+      </p>
+   </div>
+</div>

@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+
+<style>
+body {
+	padding-top: 53px;
+}
+
+</style>
+
+
+<div>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">LabIdeas</a>
+			</div>
+			<div class="toggleClass">
+				<ul class="nav navbar-nav">
+					<li><a href="/ScienceBridge"><span
+							class="glyphicon glyphicon-home"></span> Home</a></li>
+					<li><a href="/ScienceBridge/facility/selectFacilityList.action"> Facility </a></li>
+					<li><a href="#">Forum </a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" >
+					<s:if test="#session.admin==null">
+						<li ><a href="/ScienceBridge/user/toSelectUserByName.action">sign in</a></li>
+						<li style="padding-right: 20px;"><a href="/ScienceBridge/user/toAddUser.action">sign up</a></li>
+					</s:if>
+					<s:else>
+						<li style="width: 160px;"><a class="dropdown-toggle" id="isSignIn"
+						data-toggle="dropdown"
+							href="/ScienceBridge/user/toModifyUser.action?id=<s:property value="#session.admin.id"/>"><s:property
+									value="#session.admin.username.substring(0,12)" /><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li ><a 
+							href="/ScienceBridge/user/toModifyUser.action?id=<s:property value="#session.admin.id"/>">
+							<span style="font-weight:bold;">Setting</span></a></li>
+							<li class="divider"></li>
+							<li ><a 
+							href="/ScienceBridge/facility/toAddFacility.action">
+							<span style="font-weight:bold;">Add Facility</span></a></li>
+							<li class="divider"></li>
+							<li ><a 
+							href="/ScienceBridge/user/selectUserAndFacilitiesById.action?id=<s:property value="#session.admin.id"/>">
+							<span style="font-weight:bold;">My Facility</span></a></li>
+							<li class="divider"></li>
+							<li ><a 
+							href="/ScienceBridge/schedule/selectScheduleListByUserId.action?userId=<s:property value="#session.admin.id"/>" onclick="return true">
+							<span style="font-weight:bold;">View schedule</span></a></li>
+							<li class="divider"></li>
+							<li ><a 
+							href="/ScienceBridge/user/logout.action?id=<s:property value="#session.admin.id"/>">
+							<span style="font-weight:bold;">Sign out</span></a></li>
+						</ul>
+									</li>
+						
+					</s:else>
+
+				</ul>
+			</div>
+			<div>
+				<form class="navbar-form navbar-left" role="search"
+					action="/ScienceBridge/user/selectFacilityByFacilityName.action"
+					method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="input facility names"
+							name="facilityNames">
+					</div>
+					<button type="submit" class="btn btn-primary">搜索设备</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+</div>
+<script src="/ScienceBridge/js/jquery.min.js"></script>
+<script>
+	$(function() {
+		$('.toggleClass li ').click(function() {
+			$(this).parent().children().removeClass("active");
+			$(this).addClass("active");
+
+		});
+	});
+</script>

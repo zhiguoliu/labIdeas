@@ -6,7 +6,7 @@ import com.tarena.entity.Facility;
 
 public interface FacilityDao {
 	// 添加的方法
-	public abstract void addFacility(Facility facility);
+	public abstract Integer addFacility(Facility facility);
 
 	// 删除的方法
 	public abstract void deleteFacility(Integer id);

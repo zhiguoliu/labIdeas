@@ -46,7 +46,8 @@ public class FacilityAction {
 		someFileName = UploadUtil.uploadFile(some, someFileName);
 		if (!someFileName.equals("error")) {
 			facility.setPicture(someFileName);
-			facilityServiceImpl.addFacility(facility);
+			id = facilityServiceImpl.addFacility(facility);
+			System.out.println("save facility and get facilityId: "+id);
 			return "success";
 		}else {
 			return "error";

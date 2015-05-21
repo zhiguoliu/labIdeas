@@ -28,7 +28,7 @@ public class UserAction extends ActionSupport {
 	private Set<Schedule> scheduleSet;
 
 	private String timeInterval;
-	private Map<String, Object> infoMap = new HashMap<String, Object>();
+	private Map<String, Object> infoMap;
 
 	private Integer id;
 	private String username;
@@ -59,6 +59,9 @@ public class UserAction extends ActionSupport {
 
 	public String modifyUser() {
 		userServiceImpl.modifyUser(user);
+		System.out.println(user.getId()+";"+user.getUsername()+";"+user.getPassword());
+		infoMap = new HashMap<String, Object>();
+		infoMap.put("result", "Modify password successfully.");
 		return "success";
 	}
 

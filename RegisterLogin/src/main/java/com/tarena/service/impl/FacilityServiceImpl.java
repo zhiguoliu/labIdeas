@@ -17,8 +17,8 @@ public class FacilityServiceImpl implements FacilityService{
 	@Resource
 	private FacilityDao facilityDaoImpl;
 	
-	public void addFacility(Facility facility) {
-		facilityDaoImpl.addFacility(facility);
+	public Integer addFacility(Facility facility) {
+		return facilityDaoImpl.addFacility(facility);
 	}
 
 	public void deleteFacility(Integer id) {

@@ -28,7 +28,7 @@
 	</package>
 
 	<!-- User -->
-	<package name="user" namespace="/user" extends="struts-default">
+	<package name="user" namespace="/user" extends="json-default">
 		<!-- add -->
 		<action name="toAddUser">
 			<result name="success">/WEB-INF/jsp/addUser.jsp</result>
@@ -48,7 +48,9 @@
 			<result name="success">/WEB-INF/jsp/modifyUser.jsp</result>
 		</action>
 		<action name="modifyUser" class="userAction" method="modifyUser">
-			<result name="success" type="redirectAction">selectUserList</result>
+			<result name="success" type="json">
+				<param name="root">infoMap</param>
+			</result>
 		</action>
 		<!-- selectAll -->
 		<action name="selectUserList" class="userAction" method="selectUserList">
@@ -110,8 +112,8 @@
 		<action name="toAddFacility">
 			<result name="success">/WEB-INF/jsp/addFacility.jsp</result>
 		</action>
-		<action name="addFacility" class="facilityAction" method="addFacility">
-			<result name="success" type="redirectAction">selectFacilityList</result>
+		<action name="addFacility" class="com.tarena.action.FacilityAction" method="addFacility">
+			<result name="success" type="redirectAction">selectFacilityById?id=${id}</result>
 		</action>
 		<!-- delete -->
 		<action name="toDeleteFacility" class="facilityAction" method="selectFacilityById">

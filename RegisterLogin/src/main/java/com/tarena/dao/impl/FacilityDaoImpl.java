@@ -28,10 +28,12 @@ public class FacilityDaoImpl extends HibernateDaoSupport implements FacilityDao 
 		super.setSessionFactory(sf);
 	}
 
-	public void addFacility(Facility facility) throws DataAccessException {
+	public Integer addFacility(Facility facility) throws DataAccessException {
 		if (facility != null) {
 			getHibernateTemplate().save(facility);
+			return facility.getId();
 		}
+		return null;
 	}
 
 	public void deleteFacility(Integer id) throws DataAccessException {

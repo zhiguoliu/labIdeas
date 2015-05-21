@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -99,9 +101,14 @@ public class UserAction extends ActionSupport {
 		System.out.println(this.user.getUsername() + "--" + this.user.getPassword());
 		User user = userServiceImpl.selectUserByUsername(this.user.getUsername().trim());
 		System.out.println(user.getUsername() + " : " + user.getPassword());
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		System.out.println(session.getAttribute("requestURL"));
+		if (session.getAttribute("requestURL") == null) {
+			session.setAttribute("requestURL", "../index.action");
+		}
 		if (user.getPassword().equals(this.user.getPassword().trim())) {
-			ServletActionContext.getRequest().getSession()
-			.setAttribute("admin", user);
+			session.setAttribute("admin", user);
+			
 			System.out.println("success");
 			return "success";
 		}

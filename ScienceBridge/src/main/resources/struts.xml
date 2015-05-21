@@ -5,6 +5,12 @@
 
 <struts>
 
+		<package name="index"  extends="struts-default">
+		<action name="index">
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
+
 	
 	<!-- 登陆验证 -->
 	<package name="all-defaults"  extends="json-default">
@@ -87,6 +93,9 @@
 		
 		<action name="toAddSchedule" class="scheduleAction" method="selectScheduleListByFacilityId">
 			<result name="success">/WEB-INF/jsp/addSchedule.jsp</result>
+		</action>
+		<action name="index">
+			<result name="success">../index.jsp</result>
 		</action>
 
 	</package>

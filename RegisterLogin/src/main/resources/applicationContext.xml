@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+ 	xmlns:aop="http://www.springframework.org/schema/aop"
+  	xmlns:tx="http://www.springframework.org/schema/tx"     
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+ 		http://www.springframework.org/schema/tx 
+  		http://www.springframework.org/schema/tx/spring-tx.xsd
+  		http://www.springframework.org/schema/aop 
+  		http://www.springframework.org/schema/aop/spring-aop.xsd" >
+  		
+	<context:component-scan base-package="com.tarena" />
+	<context:annotation-config />
+	
+	
+	<!-- dataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="url"><value>jdbc:mysql://localhost:3306/test</value></property>
+		<property name="username"><value>root</value></property>
+		<property name="password"><value>soft01</value></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.tarena.entity"></property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=true
+				hibernate.formate_sql=true
+				hibernate.hbm2ddl.auto=update
+			</value>
+		</property>
+	</bean><!-- SessionFactory end  -->
+	
+	
+	<!-- 事务配置 -->
+	<bean id="defaultTxManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	  <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+		
+	<!--  <tx:annotation-driven transaction-manager="defaultTxManager"/>-->
+	
+	<tx:advice id="defaultTxAdvice" transaction-manager="defaultTxManager" >
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="count*" read-only="true"/>
+			<tx:method name="query*" read-only="true"/>
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config> 
+		<aop:pointcut expression="execution(* com.tarena..*Service*.*(..))" id="defaultTransactionPointcut"/>
+		<aop:advisor pointcut-ref="defaultTransactionPointcut"  advice-ref="defaultTxAdvice" />
+	</aop:config>
+	
+	
+</beans>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	
+	<!-- 登陆验证 -->
+	<package name="all-defaults"  extends="json-default">
+
+		<interceptors>
+			<interceptor name="loginIntercepter" class="com.tarena.utils.LoginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginIntercepter" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="loginStack" />
+		
+		<global-results>
+			<result name="login" type="redirectAction">
+				<param name="namespace">/user</param>
+				<param name="actionName">toSelectUserByName</param>
+			</result>
+		</global-results>
+	</package>
+
+	<!-- User -->
+	<package name="user" namespace="/user" extends="struts-default">
+		<!-- add -->
+		<action name="toAddUser">
+			<result name="success">/WEB-INF/jsp/addUser.jsp</result>
+		</action>
+		<action name="addUser" class="userAction" method="addUser">
+			<result name="success" type="redirectAction">toSelectUserByName</result>
+		</action>
+		<!-- delete -->
+		<action name="toDeleteUser" class="userAction" method="selectUserById">
+			<result name="success">/WEB-INF/jsp/deleteUser.jsp</result>
+		</action>
+		<action name="deleteUser" class="userAction" method="deleteUser">
+			<result name="success" type="redirectAction">selectUserList</result>
+		</action>
+		<!-- modify -->
+		<action name="toModifyUser" class="userAction" method="selectUserById">
+			<result name="success">/WEB-INF/jsp/modifyUser.jsp</result>
+		</action>
+		<action name="modifyUser" class="userAction" method="modifyUser">
+			<result name="success" type="redirectAction">selectUserList</result>
+		</action>
+		<!-- selectAll -->
+		<action name="selectUserList" class="userAction" method="selectUserList">
+			<result name="success">/WEB-INF/jsp/selectUserList.jsp</result>
+		</action>
+		<!-- selectById -->
+		<action name="selectUserById" class="userAction" method="selectUserById">
+			<result name="success">/WEB-INF/jsp/selectUserById.jsp</result>
+		</action>
+		<!-- selectUserAndFacilitiesById -->
+		<action name="selectUserAndFacilitiesById" class="userAction" method="selectUserById">
+			<result name="success">/WEB-INF/jsp/selectUserAndFacilitiesById.jsp</result>
+		</action>
+		<!-- selectByPage -->
+		<action name="selectUserListByPage" class="userAction"
+			method="selectUserListByPage">
+			<param name="pageSize">5</param>
+			<result name="success">/WEB-INF/jsp/selectUserListByPage.jsp</result>
+		</action>
+		<!-- selectByName -->
+		<action name="toSelectUserByName">
+			<result name="success">/WEB-INF/jsp/selectUserByName.jsp</result>
+		</action>
+		<action name="selectUserByUsername" class="userAction" method="selectUserByUsername">
+			<result name="success" type="redirectAction">${#session.requestURL}</result>
+		</action>
+		<action name="logout" class="com.tarena.action.UserAction" method="logout">
+			<result name="success">../index.jsp</result>
+		</action>
+		
+		<action name="selectFacilityByFacilityName" class="facilityAction" method="selectFacilityByFacilityName">
+			<result name="success">/WEB-INF/jsp/selectFacilityByFacilityName.jsp</result>
+		</action>
+		
+		<action name="toAddSchedule" class="scheduleAction" method="selectScheduleListByFacilityId">
+			<result name="success">/WEB-INF/jsp/addSchedule.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="time" namespace="/time" extends="json-default">
+		<!-- ajax json -->
+		<action name="timeInterval" class="com.tarena.action.UserAction"
+			method="timeInterval">
+			<result name="success" type="json">
+				<param name="root">infoMap</param>
+			</result>
+		</action>
+	</package>
+
+
+	<!-- Facility -->
+	<package name="facility" namespace="/facility" extends="all-defaults">
+		<!-- addSchedule -->
+		<action name="toAddSchedule" class="facilityAction" method="selectFacilityById">
+			<result name="success">/WEB-INF/jsp/addSchedule.jsp</result>
+		</action>
+		<!-- add -->
+		<action name="toAddFacility">
+			<result name="success">/WEB-INF/jsp/addFacility.jsp</result>
+		</action>
+		<action name="addFacility" class="facilityAction" method="addFacility">
+			<result name="success" type="redirectAction">selectFacilityList</result>
+		</action>
+		<!-- delete -->
+		<action name="toDeleteFacility" class="facilityAction" method="selectFacilityById">
+			<result name="success">/WEB-INF/jsp/deleteFacility.jsp</result>
+		</action>
+		<action name="deleteFacility" class="facilityAction" method="deleteFacility">
+			<result name="success" type="redirectAction">selectFacilityList</result>
+		</action>
+		<!-- modify -->
+		<action name="toModifyFacility" class="facilityAction" method="selectFacilityById">
+			<result name="success">/WEB-INF/jsp/modifyFacility.jsp</result>
+		</action>
+		<action name="modifyFacility" class="facilityAction" method="modifyFacility">
+			<result name="success" type="redirectAction">selectFacilityList</result>
+		</action>
+		<!-- selectAll -->
+		<action name="selectFacilityList" class="facilityAction"
+			method="selectFacilityList">
+			<result name="success">/WEB-INF/jsp/selectFacilityList.jsp</result>
+		</action>
+		<!-- selectByPage -->
+		<action name="selectFacilityListByPage" class="facilityAction"
+			method="selectFacilityListByPage">
+			<param name="pageSize">5</param>
+			<result name="success">/WEB-INF/jsp/selectFacilityListByPage.jsp
+			</result>
+		</action>
+		<!-- selectOne -->
+		<action name="selectFacilityById" class="facilityAction"
+			method="selectFacilityById">
+			<result name="success">/WEB-INF/jsp/selectFacilityById.jsp</result>
+		</action>
+		<!-- selectByName -->
+		<action name="toSelectFacilityByFacilityName">
+			<result name="success">/WEB-INF/jsp/toSelectFacilityByFacilityName.jsp</result> 
+		</action>
+		
+
+	</package>
+
+
+	<!-- Schedule -->
+	<package name="schedule" namespace="/schedule" extends="all-defaults">
+		<!-- add -->
+		<action name="toAddSchedule" class="scheduleAction" method="selectScheduleListByFacilityId">
+			<result name="success">/WEB-INF/jsp/addSchedule.jsp</result>
+		</action>
+		<action name="addSchedule" class="scheduleAction" method="addSchedule">
+			<result name="success" type="redirectAction">selectScheduleList</result>
+		</action>
+		<!-- delete -->
+		<action name="toDeleteSchedule" class="scheduleAction" method="selectScheduleById">
+			<result name="success">/WEB-INF/jsp/deleteSchedule.jsp</result>
+		</action>
+		<action name="deleteSchedule" class="scheduleAction" method="deleteSchedule">
+			<result name="success" type="redirectAction">selectScheduleList</result>
+		</action>
+		<!-- modify -->
+		<action name="toModifySchedule" class="scheduleAction" method="selectScheduleById">
+			<result name="success">/WEB-INF/jsp/modifySchedule.jsp</result>
+		</action>
+		<action name="modifySchedule" class="scheduleAction" method="modifySchedule">
+			<result name="success" type="redirectAction">selectScheduleList</result>
+		</action>
+		<!-- selectAll -->
+		<action name="selectScheduleList" class="scheduleAction"
+			method="selectScheduleList">
+			<result name="success">/WEB-INF/jsp/selectScheduleList.jsp</result>
+		</action>
+		<!-- selectScheduleListByUserId -->
+		<action name="selectScheduleListByUserId" class="scheduleAction"
+			method="selectScheduleListByUserId">
+			<result name="success">/WEB-INF/jsp/selectScheduleListByUserId.jsp</result>
+		</action>
+		<!-- selectByPage -->
+		<action name="selectScheduleListByPage" class="scheduleAction"
+			method="selectScheduleListByPage">
+			<param name="pageSize">5</param>
+			<result name="success">/WEB-INF/jsp/selectScheduleListByPage.jsp
+			</result>
+		</action>
+		<!-- selectOne -->
+		<action name="selectScheduleById" class="scheduleAction"
+			method="selectScheduleById">
+			<result name="success">/WEB-INF/jsp/selectScheduleById.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="scheduleJS" namespace="/scheduleJS" extends="all-defaults">
+		<!-- ajax json -->
+		<action name="addScheduleJS" class="scheduleAction" method="addScheduleJS">
+			<result name="success" type="json">
+				<param name="root">infoMap</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="demo3" extends="struts-default">
+						<!-- 拦截器或拦截器栈注册 -->
+		<action name="upload" class="com.tarena.action.FacilityAction" method="uploadFile">
+			<!-- defaultStack已经包含了fileUpload
+			<interceptor-ref name="fileUpload"/>-->
+			<result name="success">/ok.jsp</result>
+		</action>
+	</package>
+
+
+</struts>
